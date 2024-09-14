@@ -54,6 +54,10 @@ def on_error(ws, error):
 def on_close(ws):
     print("WebSocket connection closed")
 
+def on_open(ws):
+    print("Object Detection Server Connected")
+    ws.send("DETECTION_CONNECTED")  # Inform the server that the detection client is connected
+
 def connect_to_websocket():
     ws = WebSocketApp("ws://localhost:8080",
                     on_message=on_message,)
