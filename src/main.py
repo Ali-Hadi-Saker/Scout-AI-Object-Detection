@@ -16,6 +16,12 @@ def process_frame(frame_data):
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         results = model(rgb_frame)
+        detections = []
+        for det in results.xyxy[0]:
+            x1, y1, x2, y2, conf, cls = det[:6]
+            label = results.names[int(cls)]
+            location = (int(x1), int(y1), int(x2), int(y2))
+            detections.append({"label": label}, {"location": location})
     except Exception as e:
         print(f"Error processing frame: {e}")
         return None
