@@ -50,7 +50,10 @@ def on_message(ws, message):
 
 def on_error(ws, error):
     print(f"WebSocket Error: {error}")
-        
+
+def on_close(ws):
+    print("WebSocket connection closed")
+
 def connect_to_websocket():
     ws = WebSocketApp("ws://localhost:8080",
                     on_message=on_message,)
