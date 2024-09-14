@@ -3,8 +3,18 @@ import torch
 
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 
+def on_message(ws, message):
+    try:
+        print("Received frame from WebSocket server")
+    except Exception as e:
+        print(f"Error in message handling: {e}")
+
+
+
+        
 def connect_to_websocket():
-    ws = WebSocketApp("ws://localhost:8080")
+    ws = WebSocketApp("ws://localhost:8080",
+                    on_message=on_message,)
     ws.run_forever()
 
 if __name__ == "__main__":
