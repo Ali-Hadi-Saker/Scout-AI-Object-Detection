@@ -5,7 +5,11 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 
 
 def process_frame(frame_data):
-    pass
+    try:
+       pass
+    except Exception as e:
+        print(f"Error processing frame: {e}")
+        return None
 
 def on_message(ws, message):
     try:
