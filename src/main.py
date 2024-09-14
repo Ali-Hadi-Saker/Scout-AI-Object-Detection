@@ -22,6 +22,9 @@ def process_frame(frame_data):
             label = results.names[int(cls)]
             location = (int(x1), int(y1), int(x2), int(y2))
             detections.append({"label": label}, {"location": location})
+
+            print(f"Detections: {detections}") 
+        return detections
     except Exception as e:
         print(f"Error processing frame: {e}")
         return None
