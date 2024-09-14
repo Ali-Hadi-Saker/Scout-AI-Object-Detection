@@ -32,7 +32,18 @@ def process_frame(frame_data):
 def on_message(ws, message):
     try:
         print("Received frame from WebSocket server")
-        process_frame(message)
+        processed_data = process_frame(message)
+        if processed_data:
+            # Convert detections to string format for sending
+            processed_data_str = str(processed_data).encode('utf-8')
+            # Send the processed data back to the server
+            print("Sent processed data back to server")
+            # Send as binary with opcode=0x2
+            ws.send(processed_data_str, opcode=0x2)  
+            print(processed_data_str)
+        else:
+            print("No processed data to send")
+            
     except Exception as e:
         print(f"Error in message handling: {e}")
 
