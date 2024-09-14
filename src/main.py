@@ -60,7 +60,10 @@ def on_open(ws):
 
 def connect_to_websocket():
     ws = WebSocketApp("ws://localhost:8080",
-                    on_message=on_message,)
+                    on_message=on_message,
+                    on_error=on_error,
+                    on_close=on_close,
+                    on_open=on_open)
     ws.run_forever()
 
 if __name__ == "__main__":
