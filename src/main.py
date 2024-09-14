@@ -48,7 +48,8 @@ def on_message(ws, message):
         print(f"Error in message handling: {e}")
 
 
-
+def on_error(ws, error):
+    print(f"WebSocket Error: {error}")
         
 def connect_to_websocket():
     ws = WebSocketApp("ws://localhost:8080",
