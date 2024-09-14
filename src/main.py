@@ -14,6 +14,8 @@ def process_frame(frame_data):
 
         # Convert BGR image to RGB as YOLO expects RGB
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+        results = model(rgb_frame)
     except Exception as e:
         print(f"Error processing frame: {e}")
         return None
